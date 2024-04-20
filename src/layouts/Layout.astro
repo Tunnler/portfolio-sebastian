@@ -16,20 +16,44 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
   </head>
-  <body class="bg-gray-900 min-h-screen pb-32 max-w-xl mx-auto">
-	<Header />
-    <main class="max-w-5xl px-4 m-auto">
-      <slot />
-    </main>
+  <body class="relative text-black dark:text-white">
+
+    
+    <div
+      class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-gray-50 dark:bg-neutral-950
+    bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,255,255,1),rgba(243,232,255,0.7))]
+    dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(141,95,164,0.4),rgba(255,255,255,0))]"
+    >
+    </div>
+
+
+
+    <Header />
+    <slot />
+    <style is:global>
+      :root {
+        color-scheme: light dark;
+      }
+
+      html {
+        font-family: "Poppins", sans-serif;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        overscroll-behavior: none;
+      }
+    </style>
   </body>
 </html>
-<style is:global>
-  html {
-    font-family: system-ui, sans-serif;
-    background: #212121;
-    background-size: 224px;
-    color-scheme: dark light;
-  }
-</style>
