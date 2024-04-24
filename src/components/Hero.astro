@@ -6,52 +6,48 @@ import LinkedInIcon from "../icons/LinkedIn.astro";
 import MailIcon from "../icons/Mail.astro";
 ---
 
-  <div class="flex items-center mb-8">
+<div class="max-w-2xl">
+  <div class="sm:flex items-center mb-8">
     <img
-      class="rounded-full size-36 mr-8 shadow-lg"
+      class="mb-8 sm:mb-0 rounded-full size-24 sm:size-36 mr-8 shadow-lg"
       src="https://i.pinimg.com/originals/b6/99/ea/b699ea44cbe4c1c9af918016259703aa.jpg"
       alt="Tunnler's"
     />
-
     <div class="flex flex-col gap-5">
       <div>
-        <h1 class="text-5xl font-bold text-pretty">
+        <h1 class="text-4xl sm:text-5xl font-bold text-pretty">
           Hi, <span class="text-purple-800 opacity-80 dark:text-purple-300"
             >I'm Sebastian</span
           > 👋
         </h1>
         <span
-          class="font-semibold inline-flex animate-background-shine bg-[linear-gradient(110deg,#c084fc,45%,#e0c3ff,55%,#c084fc)] dark:bg-[linear-gradient(110deg,#f3e8ff,45%,#c084fc,55%,#f3e8ff)] bg-[length:250%_100%] bg-clip-text text-xl text-transparent"
+          class="font-semibold inline-flex animate-background-shine bg-[linear-gradient(110deg,#c084fc,45%,#e0c3ff,55%,#c084fc)] dark:bg-[linear-gradient(110deg,#f3e8ff,45%,#c084fc,55%,#f3e8ff)] bg-[length:250%_100%] bg-clip-text text-lg sm:text-xl text-transparent"
           >Frontend Developer & UI/UX Designer</span
         >
       </div>
-
-      <div class="">
+      <div class="flex flex-wrap gap-4">
         <Badge>Looking for job</Badge>
-        <Badge>Curriculum</Badge>
+        <Badge>Available for Freelance</Badge>
       </div>
     </div>
   </div>
-
-  <p class="text-xl opacity-80 text-pretty">
+  <p class="text-base sm:text-xl mt-6 md:mt-10 text-pretty">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, aut
     delectus. Cumque similique incidunt eaque atque voluptatem accusamus quae
     voluptates?
   </p>
-
   <nav class="flex flex-wrap gap-4 mt-8">
     <SocialPill href="https://www.linkedin.com">
       <LinkedInIcon class="size-6" />
       LinkedIn
     </SocialPill>
-
     <SocialPill href="https://www.linkedin.com">
       <GitHubIcon class="size-6" />
       GitHub
     </SocialPill>
-
     <SocialPill href="https://www.linkedin.com">
       <MailIcon class="size-6" />
       sebastian4980@gmail.com
     </SocialPill>
   </nav>
+</div>

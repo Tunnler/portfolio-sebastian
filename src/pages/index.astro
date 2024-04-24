@@ -8,15 +8,29 @@ import Experience from "../components/Experience.astro";
 
 <Layout title="Sebastian's Portfolio - Frontend Developer & UI/UX Designer">
   <main class="px-4">
-    <SectionContainer class="py-24 md:py-48">
-      <Hero />
-      <hr
-        class="w-full h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-20 dark:bg-gray-700"
-      />
+    <!-- ----------------------------- HERO ----------------------------- -->
+    <SectionContainer class="pt-24 sm:pt-48" >
+      <Hero>
+        </slot>
+      </Hero>
     </SectionContainer>
-  </main>
 
-  <SectionContainer>
-    <Experience />
-  </SectionContainer>
+    <SectionContainer class="py-12">
+    <hr
+    class="w-full h-1 mx-auto my-4 bg-gray-700 border-0 rounded md:my-20 dark:bg-gray-700"
+  />
+    </SectionContainer>
+
+    <div class="space-y-24">
+      <!-- ----------------------------- EXPERIENCE ----------------------------- -->
+      <SectionContainer>
+        <h2
+          class="flex items-center mb-6 text-3xl font-semibold gap-x-3"
+        >
+          Experiencia laboral
+        </h2>
+        <Experience />
+      </SectionContainer>
+    </div>
+  </main>
 </Layout>
