@@ -1,0 +1,116 @@
+---
+import GitHub from "../icons/GitHub.astro";
+import NextJS from "../icons/NextJS.astro";
+import Tailwind from "../icons/Tailwind.astro";
+import Link from "../icons/Link.astro";
+import LinkButton from "./LinkButton.astro";
+import Angular from "../icons/Angular.astro";
+import NodeJS from "../icons/NodeJS.astro";
+
+const TAGS = {
+  NEXT: {
+    name: "Next.js",
+    class: "bg-black text-white", 
+    icon: NextJS,
+  },
+  TAILWIND: {
+    name: "Tailwind CSS",
+    class: "bg-[#003159] text-white",
+    icon: Tailwind,
+  },
+  ANGULAR: {
+    name: "Angular",
+    class: "bg-[#FF8AA3] text-white",
+    icon: Angular,
+  },
+  NODE: {
+    name: "Node.js",
+    class: "bg-[#547B29] text-white",
+    icon: NodeJS,
+  },
+};
+const PROJECTS = [
+  {
+    title: "SoloQ Challenge - Universidad del Pacífico",
+    description:
+      "Desarrollé una tabla dinámica para mostrar estadísticas en tiempo real de los jugadores en un torneo de gaming, implementada con Node.js para el backend y React junto con NextUI para el frontend.",
+    link: "https://soloqchallenge-up.netlify.app/",
+    github: "https://github.com/Tunnler/up-soloq",
+    image: "/projects/GamingUPsoloQ.webp",
+    tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.NODE],
+  },
+  {
+    title: "Blip - Encuentra y renta estacionamientos fácilmente",
+    description:
+      "Aplicación para conectar personas que necesitan estacionamiento con quienes tienen espacio disponible. Permite reservar estacionamientos en Lima de forma rápida y fácil. Creada con Angular y Ionic.",
+    link: "https://blip.pe/",
+    image: "/projects/blip.webp",
+    tags: [TAGS.ANGULAR],
+  },
+  {
+    title: "Coderlyst - Servicios de Desarrollo Web Freelance",
+    description:
+      "Desarrollé un sitio web para atraer usuarios y clientes, destacando mis servicios de desarrollo web personalizado con Next.js y Tailwind CSS, enfocado en soluciones a medida como sitios informativos y tiendas en línea.",
+    link: "https://coderlyst.com.co/",
+    image: "/projects/coderlyst.webp",
+    tags: [TAGS.NEXT, TAGS.TAILWIND],
+  },
+];
+---
+
+<div class="flex flex-col gap-y-16">
+  {
+    PROJECTS.map(({ image, title, description, tags, link, github }) => (
+      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+        <div class="w-full md:w-1/2">
+          <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+            <img
+              alt={title}
+              class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
+              loading="lazy"
+              src={image}
+            />
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/2 md:max-w-lg">
+          <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+            {title}
+          </h3>
+          <div class="flex flex-wrap mt-2">
+            <ul class="flex flex-row mb-2 gap-x-2">
+              {tags.map((tag) => (
+                <li>
+                  <span
+                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
+                  >
+                    <tag.icon class="size-4" />
+                    {tag.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-2 text-gray-700 dark:text-gray-400">
+              {description}
+            </div>
+            <footer class="flex items-end justify-start mt-4 gap-x-4">
+              {github && (
+                <LinkButton href={github}>
+                  <GitHub class="size-6" />
+                  Code
+                </LinkButton>
+              )}
+              {link && (
+                <LinkButton href={link}>
+                  <Link class="size-4" />
+                  Preview
+                </LinkButton>
+              )}
+            </footer>
+          </div>
+        </div>
+      </article>
+    ))
+  }
+</div>

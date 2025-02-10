@@ -1,36 +1,60 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
 import SectionContainer from "../components/SectionContainer.astro";
 import Hero from "../components/Hero.astro";
 import Experience from "../components/Experience.astro";
+import Projects from "../components/Projects.astro";
+import TitleSection from "../components/TitleSection.astro";
+import CodeIcon from "../icons/Code.astro";
+import Briefcase from "../icons/Briefcase.astro";
+import AboutMe from "../components/AboutMe.astro";
+import ProfileCheck from "../icons/ProfileCheck.astro";
+import Technologies from "../components/Technologies.astro";
+import Devices from "../icons/Devices.astro";
 ---
 
-<Layout title="Sebastian's Portfolio - Frontend Developer & UI/UX Designer">
+<Layout title="Portafolio de Sebastian - Desarrollador Fullstack" description="Portafolio de Sebastian - Desarrollador Fullstack y  apasionado por el diseño UI/UX">
   <main class="px-4">
-    <!-- ----------------------------- HERO ----------------------------- -->
-    <SectionContainer class="pt-24 sm:pt-48" >
+
+    <SectionContainer id="inicio" class="py-16 md:py-36">
       <Hero>
-        </slot>
+        <slot />
       </Hero>
     </SectionContainer>
 
-    <SectionContainer class="py-12">
-    <hr
-    class="w-full h-1 mx-auto my-4 bg-gray-700 border-0 rounded md:my-20 dark:bg-gray-700"
-  />
-    </SectionContainer>
-
     <div class="space-y-24">
-      <!-- ----------------------------- EXPERIENCE ----------------------------- -->
-      <SectionContainer>
-        <h2
-          class="flex items-center mb-6 text-3xl font-semibold gap-x-3"
-        >
+      <SectionContainer id="experiencia">
+        <TitleSection>
+          <Briefcase class="size-8" />
           Experiencia laboral
-        </h2>
+        </TitleSection>
         <Experience />
       </SectionContainer>
+
+      <SectionContainer id="proyectos">
+        <TitleSection>
+          <CodeIcon class="size-7" />
+          Proyectos
+        </TitleSection>
+        <Projects />
+      </SectionContainer>
+
+      <SectionContainer id="sobre-mi">
+        <TitleSection>
+          <ProfileCheck class="size-8" />
+          Sobre mí
+        </TitleSection>
+        <AboutMe />
+      </SectionContainer>
+
+      <SectionContainer id="tecnologias">
+        <TitleSection>
+          <Devices class="size-8" />
+          Tecnologías
+        </TitleSection>
+        <Technologies />
+      </SectionContainer>
     </div>
+    
   </main>
 </Layout>

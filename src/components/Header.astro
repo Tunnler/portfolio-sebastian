@@ -1,40 +1,139 @@
 ---
+import ThemeToggle from "./ThemeToggle.astro"
 
+const navItems = [
+  {
+    title: "Inicio",
+    label: "inicio",
+    url: "/#inicio",
+  },
+  {
+    title: "Experiencia",
+    label: "experiencia",
+    url: "/#experiencia",
+  },
+  {
+    title: "Proyectos",
+    label: "proyectos",
+    url: "/#proyectos",
+  },
+  {
+    title: "Sobre mí",
+    label: "sobre-mi",
+    url: "/#sobre-mi",
+  },
+  {
+    title: "Tecnologías",
+    label: "tecnologias",
+    url: "/#tecnologias",
+  },
+]
 ---
 
 <header class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2">
-    <nav class="flex flex-row gap-x-10 opacity-80">
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/proyects">Projects</a>
-        <a href="/contact">Contact</a>
-    </nav>
-
-</header>
-
-<!-- 
-
-<header class="py-8 px-4 mx-auto max-w-xl lg:py-16 lg:px-6">
-
-    <div class="mx-auto text-center mb-8 lg:mb-16">
-        <h2 class="mb-4 text-5xl tracking-tight font-extrabold text-white">
-            Bienvenido a esta mini prueba de Header
-        </h2>
-        <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">
-            Esto es un parrafo de muestra Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est, et?
-        </p>
-
-        <nav class="flex flex-col items-center justify-between w-full text-center md:flex-row">
-
-            <HeaderButton class="text-white" href="/">Inicio</HeaderButton>
-            <HeaderButton class="text-white" href="/">Nosotros</HeaderButton>
-            <HeaderButton class="text-white" href="/">Contacto</HeaderButton>
-
-
-
-        </nav>
+  <nav class="flex px-3 text-sm font-medium rounded-full text-gray-600 dark:text-gray-200 justify-center items-center">
+    <div class="hidden md:flex">
+      {
+        navItems.map((link) => (
+          <a
+            class="relative block px-2 py-2 transition hover:text-purple-500 dark:hover:text-purple-400"
+            aria-label={link.label}
+            href={link.url}
+          >
+            {link.title}
+          </a>
+        ))
+      }
     </div>
-
+    <ThemeToggle />
+    <button id="hamburger" class="md:hidden p-2 focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+    </button>
+  </nav>
+  <div id="mobile-menu" class="hidden md:hidden absolute top-16 w-full bg-white dark:bg-gray-800/90 rounded-lg shadow-lg">
+    {
+      navItems.map((link) => (
+        <a
+          class="block px-4 py-2 text-center transition hover:text-purple-500 dark:hover:text-purple-400"
+          aria-label={link.label}
+          href={link.url}
+        >
+          {link.title}
+        </a>
+      ))
+    }
+  </div>
 </header>
 
--->
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const sections = document.querySelectorAll("section")
+    const navItems = document.querySelectorAll("header nav a")
+
+    const callback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navItems.forEach((item) => {
+            if (item.getAttribute("aria-label") == entry.target.id) {
+              item.classList.add("text-purple-500")
+            } else {
+              item.classList.remove("text-purple-500")
+            }
+          })
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(callback, {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.3,
+    })
+
+    sections.forEach((section) => {
+      observer.observe(section)
+    })
+
+    // Cleanup function
+    document.onvisibilitychange = () => {
+      if (document.visibilityState === "hidden") {
+        observer.disconnect()
+      } else {
+        sections.forEach((section) => {
+          observer.observe(section)
+        })
+      }
+    }
+
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger')
+    const mobileMenu = document.getElementById('mobile-menu')
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden')
+    })
+  })
+</script>
+
+<style>
+  nav {
+    animation: nav-shadown 1s linear both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
+  }
+
+  nav {
+    @apply dark:bg-gray-800/90 bg-white/50;
+  }
+
+  @keyframes nav-shadown {
+    0% {
+      @apply dark:bg-gray-800/0 bg-white/0;
+    }
+    to {
+      @apply shadow-lg ring-1 backdrop-blur ring-white/10;
+    }
+  }
+</style>
